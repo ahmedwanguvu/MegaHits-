@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+<title>MegaHits Vibez — Movies, Music, Sports &amp; More in One App</title>
+<meta name="description" content="MegaHits Vibez: your all-in-one hub for movies, music, live sports, weather, crypto, news, gaming and more." />
+<meta name="theme-color" content="#0d0d10" />
+<link rel="manifest" href="manifest.json" />
+<link rel="icon" href="icons/icon-192.png" />
+
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@500;600;700&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet" />
+
+<link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+
+<!-- ============ TOAST CONTAINER ============ -->
+<div class="toast-container" id="toast-container"></div>
+
+<!-- ============ 1. TOP HEADER BAR ============ -->
+<header class="app-header">
+  <div class="header-left">
+    <button class="icon-btn" id="menu-toggle" aria-label="Open menu" aria-expanded="false" aria-controls="sidebar">
+      <svg class="icon" data-lucide="menu"></svg>
+    </button>
+    <a href="#/" class="brand">
+      <span class="brand-mega">MEGA</span><span class="brand-hits">Hits</span>
+      <span class="brand-text" style="color:var(--text-muted); font-family:var(--font-body); font-weight:500; font-size:0.7rem;">VIBEZ</span>
+    </a>
+  </div>
+
+  <div class="search-wrap">
+    <svg class="icon icon-sm search-icon" data-lucide="search"></svg>
+    <input type="text" class="search-input" id="search-input" placeholder="Search movies, music, sports, books…" autocomplete="off" />
+    <div class="search-results" id="search-results"></div>
+  </div>
+
+  <div class="header-right">
+    <button class="signin-btn" id="signin-btn">
+      <svg class="icon icon-sm" data-lucide="log-in"></svg>
+      <span>Sign in</span>
+    </button>
+    <button class="icon-btn" id="settings-toggle" aria-label="Open settings">
+      <svg class="icon" data-lucide="settings"></svg>
+    </button>
+  </div>
+</header>
+
+<!-- ============ 2. HERO SLIDER ============ -->
+<section class="hero-slider" id="hero-slider" aria-label="Trending highlights"></section>
+
+<main id="app-main">
+  <!-- ============ 3. CATEGORY PREVIEW GRID ============ -->
+  <section class="section">
+    <div class="section-heading">
+      <h2 class="section-title"><svg class="icon" data-lucide="layout-grid"></svg> Browse categories</h2>
+    </div>
+    <div class="grid" id="category-grid"></div>
+  </section>
+</main>
+
+<!-- ============ 4. DRAGGABLE FLOATING AUDIO PLAYER ============ -->
+<div class="audio-player hidden" id="audio-player">
+  <button class="drag-handle" id="drag-handle" aria-label="Move player">
+    <svg class="icon icon-sm" data-lucide="grip-vertical"></svg>
+  </button>
+  <img class="player-cover" id="player-cover" src="" alt="" />
+  <div class="player-meta">
+    <div class="player-track" id="player-track">—</div>
+    <div class="player-artist" id="player-artist">—</div>
+    <div class="player-progress"><div class="player-progress-fill" id="player-progress-fill"></div></div>
+  </div>
+  <div class="player-controls">
+    <button class="player-play-btn" id="player-play-btn" aria-label="Play or pause">
+      <svg class="icon icon-sm" data-lucide="play"></svg>
+    </button>
+    <button class="icon-btn" id="player-minimize" aria-label="Minimize player">
+      <svg class="icon icon-sm" data-lucide="minus"></svg>
+    </button>
+    <button class="icon-btn" id="player-close" aria-label="Close player">
+      <svg class="icon icon-sm" data-lucide="x"></svg>
+    </button>
+  </div>
+</div>
+<button class="audio-bubble" id="audio-bubble" aria-label="Restore player">
+  <img id="bubble-cover" src="" alt="" />
+</button>
+
+<!-- ============ 5. SIDEBAR NAVIGATION ============ -->
+<div class="sidebar-overlay" id="sidebar-overlay"></div>
+<nav class="sidebar" id="sidebar" aria-label="Main navigation">
+  <div class="sidebar-brand">
+    <span class="brand-mega">MEGA</span><span class="brand-hits">Hits</span> Vibez
+  </div>
+
+  <div class="sidebar-section-label">Content categories</div>
+  <ul id="sidebar-categories"></ul>
+
+  <div class="sidebar-section-label">System</div>
+  <a href="#" class="sidebar-link" id="nav-settings">
+    <svg class="icon" data-lucide="settings"></svg> Settings
+  </a>
+  <a href="#" class="sidebar-link" id="nav-join">
+    <svg class="icon" data-lucide="users"></svg> Join us
+  </a>
+  <div class="sidebar-toggle-row">
+    <a href="#" class="sidebar-link" style="padding:0; flex:1;">
+      <svg class="icon" data-lucide="shield-check"></svg> Kids Safe Mode
+    </a>
+    <button class="toggle-switch" id="kids-toggle" role="switch" aria-checked="false" aria-label="Toggle Kids Safe Mode"></button>
+  </div>
+
+  <div class="sidebar-footer">MegaHits Vibez © 2026</div>
+</nav>
+
+<!-- ============ 6a. SETTINGS MODAL ============ -->
+<div class="modal-overlay" id="settings-modal">
+  <div class="modal-panel">
+    <div class="modal-header">
+      <div class="modal-title"><svg class="icon" data-lucide="settings"></svg> Settings</div>
+      <button class="icon-btn" data-close-modal="settings-modal" aria-label="Close settings"><svg class="icon" data-lucide="x"></svg></button>
+    </div>
+    <div class="modal-body">
+      <div class="field">
+        <label class="field-label">Theme</label>
+        <div class="option-row" id="theme-options">
+          <button class="option-btn selected" data-theme="dark"><svg class="icon icon-sm" data-lucide="moon"></svg> Dark</button>
+          <button class="option-btn" data-theme="light"><svg class="icon icon-sm" data-lucide="sun"></svg> Light</button>
+        </div>
+      </div>
+      <div class="field">
+        <label class="field-label" for="lang-select">Language</label>
+        <select class="select-input" id="lang-select">
+          <option value="en" selected>English</option>
+          <option value="sw">Kiswahili</option>
+        </select>
+      </div>
+      <div class="field">
+        <label class="field-label" for="currency-select">Currency</label>
+        <select class="select-input" id="currency-select">
+          <option value="USD" selected>USD — US Dollar</option>
+          <option value="TZS">TZS — Tanzanian Shilling</option>
+          <option value="KES">KES — Kenyan Shilling</option>
+          <option value="EUR">EUR — Euro</option>
+        </select>
+      </div>
+    </div>
+    <div class="modal-footer">
+      <button class="btn btn-primary btn-block" data-close-modal="settings-modal">Save &amp; close</button>
+    </div>
+  </div>
+</div>
+
+<!-- ============ 6b. MEDIA DETAIL MODAL ============ -->
+<div class="modal-overlay" id="media-modal">
+  <div class="modal-panel wide">
+    <div class="modal-header">
+      <div class="modal-title"><svg class="icon" data-lucide="film"></svg> <span id="media-modal-title">Details</span></div>
+      <button class="icon-btn" data-close-modal="media-modal" aria-label="Close details"><svg class="icon" data-lucide="x"></svg></button>
+    </div>
+    <div class="modal-body" id="media-modal-body"></div>
+  </div>
+</div>
+
+<!-- ============ 6c. JOIN US DRAWER ============ -->
+<div class="modal-overlay drawer-overlay" id="join-modal">
+  <div class="modal-panel drawer-panel">
+    <div class="modal-header">
+      <div class="modal-title"><svg class="icon" data-lucide="users"></svg> Join the community</div>
+      <button class="icon-btn" data-close-modal="join-modal" aria-label="Close"><svg class="icon" data-lucide="x"></svg></button>
+    </div>
+    <div class="modal-body">
+      <div class="social-grid" id="social-grid"></div>
+      <div class="field" style="margin-top:18px;">
+        <label class="field-label" for="feedback-text">Send feedback</label>
+        <select class="select-input" id="feedback-text" style="display:none;"></select>
+        <textarea id="feedback-input" class="select-input" style="height:88px; padding:10px 12px; resize:vertical;" placeholder="Tell us what you think…"></textarea>
+      </div>
+    </div>
+    <div class="modal-footer">
+      <button class="btn btn-primary btn-block" id="feedback-submit">Send feedback</button>
+    </div>
+  </div>
+</div>
+
+<!-- ============ PWA INSTALL BANNER ============ -->
+<div class="install-banner" id="install-banner">
+  <svg class="icon" data-lucide="download"></svg>
+  <div class="install-banner-text">
+    <strong>Install MegaHits Vibez</strong>
+    Add to your home screen for the full app experience.
+  </div>
+  <button class="btn btn-primary" id="install-btn" style="height:34px; padding:0 12px; font-size:0.78rem;">Install</button>
+  <button class="icon-btn" id="install-dismiss" aria-label="Dismiss"><svg class="icon icon-sm" data-lucide="x"></svg></button>
+</div>
+
+<!-- ============ 7. FOOTER ============ -->
+<footer class="app-footer">
+  <div class="footer-social" id="footer-social"></div>
+  <div class="footer-copy">MegaHits Vibez Super App © 2026 — built for people who don't like waiting.</div>
+  <div class="pwa-status" id="pwa-status"><svg class="icon icon-sm" data-lucide="wifi"></svg> Offline sync ready</div>
+</footer>
+
+<script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js"></script>
+<script src="js/app.js"></script>
+</body>
+</html>
