@@ -9,6 +9,7 @@
     "TMDB_API_KEY": { "required": false },
     "TMDB_READ_ACCESS_TOKEN": { "required": false },
     "OMDB_API_KEY": { "required": false },
+    "APP_BASE": { "required": true },
     "SPOTIFY_CLIENT_ID": { "required": false },
     "SPOTIFY_CLIENT_SECRET": { "required": false },
     "DEEZER_APP_ID": { "required": false },
