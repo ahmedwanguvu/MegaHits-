@@ -1,0 +1,22 @@
+{
+    "name": "MegaHits",
+    "description": "",
+    "logo": "https://files.catbox.moe/bdwqa7.jpg",
+    "repository": "https://github.com/ahmedwanguvu/MegaHits-",
+    "keywords": ["Adevos-X Bot"],
+    "success_url": "/", 
+    "buildpacks": [{ "url": "https://github.com/heroku/heroku-buildpack-nodejs#latest" } ],
+    "env": {      
+      "PORT": {
+        "description": "Port for web app.4000,5000,3000... any!",
+        "value": "5000",
+        "required": false 
+      },
+      "MESSAGE": {
+        "description": "This site is only for session generating",
+        "value": "Adevos-X Tech",
+        "required": false 
+      }
+    }   
+
+}
