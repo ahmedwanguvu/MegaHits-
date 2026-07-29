@@ -1,22 +1,41 @@
 {
-    "name": "MegaHits",
-    "description": "",
-    "logo": "https://files.catbox.moe/bdwqa7.jpg",
-    "repository": "https://github.com/ahmedwanguvu/MegaHits-",
-    "keywords": ["Adevos-X Bot"],
-    "success_url": "/", 
-    "buildpacks": [{ "url": "https://github.com/heroku/heroku-buildpack-nodejs#latest" } ],
-    "env": {      
-      "PORT": {
-        "description": "Port for web app.4000,5000,3000... any!",
-        "value": "5000",
-        "required": false 
-      },
-      "MESSAGE": {
-        "description": "This site is only for session generating",
-        "value": "Adevos-X Tech",
-        "required": false 
-      }
-    }   
-
+  "name": "MegaHits Vibez API Gateway",
+  "description": "Node/Express API proxy that powers the MegaHits Vibez super app.",
+  "repository": "https://github.com/YOUR_USERNAME/YOUR_REPO",
+  "keywords": ["node", "express", "api-gateway", "megahits-vibez"],
+  "env": {
+    "NODE_ENV": { "value": "production" },
+    "FRONTEND_ORIGIN": { "description": "URL of your deployed frontend, e.g. https://megahits.vercel.app", "required": false },
+    "TMDB_API_KEY": { "required": false },
+    "TMDB_READ_ACCESS_TOKEN": { "required": false },
+    "OMDB_API_KEY": { "required": false },
+    "SPOTIFY_CLIENT_ID": { "required": false },
+    "SPOTIFY_CLIENT_SECRET": { "required": false },
+    "DEEZER_APP_ID": { "required": false },
+    "API_FOOTBALL_KEY": { "required": false },
+    "SPORTSDB_API_KEY": { "required": false },
+    "OPENWEATHER_API_KEY": { "required": false },
+    "COINGECKO_API_KEY": { "required": false },
+    "EXCHANGERATE_API_KEY": { "required": false },
+    "SPOONACULAR_API_KEY": { "required": false },
+    "NEWS_API_KEY": { "required": false },
+    "CURRENTS_API_KEY": { "required": false },
+    "RAWG_API_KEY": { "required": false },
+    "OPENAI_API_KEY": { "required": false },
+    "DEEPL_API_KEY": { "required": false },
+    "GOOGLE_BOOKS_API_KEY": { "required": false },
+    "TICKETMASTER_API_KEY": { "required": false },
+    "SOCIAL_WHATSAPP_URL": { "required": false },
+    "SOCIAL_TELEGRAM_URL": { "required": false },
+    "SOCIAL_YOUTUBE_URL": { "required": false },
+    "SOCIAL_INSTAGRAM_URL": { "required": false },
+    "SOCIAL_TIKTOK_URL": { "required": false },
+    "GOOGLE_CLIENT_ID": { "required": false },
+    "GOOGLE_CLIENT_SECRET": { "required": false },
+    "SESSION_SECRET": { "generator": "secret" }
+  },
+  "buildpacks": [
+    { "url": "https://github.com/lstoll/heroku-buildpack-monorepo" },
+    { "url": "heroku/nodejs" }
+  ]
 }
